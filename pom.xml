@@ -7,6 +7,12 @@
     <groupId>serialTest</groupId>
     <artifactId>testSerialPort</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <dependencies>
+        <dependency>
+            <groupId>org.scream3r</groupId>
+            <artifactId>jssc</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+    </dependencies>
 
 </project>

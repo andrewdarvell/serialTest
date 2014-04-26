@@ -1,7 +1,13 @@
 package serialtest;
 
-/**
- * Created by darvell on 26.04.14.
- */
+import jssc.SerialPortList;
+
 public class Main {
+
+    public static void main(String[] args) {
+        String[] portNames = SerialPortList.getPortNames();
+        for(int i = 0; i < portNames.length; i++){
+            System.out.println(portNames[i]);
+        }
+    }
 }
