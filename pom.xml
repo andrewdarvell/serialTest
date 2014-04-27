@@ -28,8 +28,8 @@
                             <addClasspath>true</addClasspath>
                             <mainClass>serialtest.Main</mainClass>
                             <!--packageName>serialtest</packageName-->
-                            <addClasspath>true</addClasspath>
-                            <classpathPrefix>target/lib/</classpathPrefix>
+                            <classpathLayoutType>simple</classpathLayoutType>
+                            <classpathPrefix>lib/</classpathPrefix>
                         </manifest>
                     </archive>
                 </configuration>
