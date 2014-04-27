@@ -1,35 +1,38 @@
 package serialtest;
 
-import jssc.SerialPort;
-import jssc.SerialPortList;
+
+import gnu.io.CommPortIdentifier;
+import gnu.io.NoSuchPortException;
+import gnu.io.PortInUseException;
+import gnu.io.SerialPort;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+
 
 public class Main {
 
-    public static void main(String[] args) {
-        String[] portNames = SerialPortList.getPortNames();
-        for(int i = 0; i < portNames.length; i++){
-            System.out.println(portNames[i]);
-        }
 
+    //private static SerialPort serialPort;
 
+    public static void main(String[] args) throws NoSuchPortException, PortInUseException, IOException, InterruptedException {
 
-        try{
-            SerialPort serialPort = new SerialPort("/dev/ttyACM0");
-            serialPort.openPort();
-            serialPort.setParams(SerialPort.BAUDRATE_9600,
-                    SerialPort.DATABITS_8,
-                    SerialPort.STOPBITS_1,
-                    SerialPort.PARITY_NONE);
+        System.setProperty("gnu.io.rxtx.SerialPorts", "/dev/ttyACM0");
+        CommPortIdentifier portId = CommPortIdentifier.getPortIdentifier("/dev/ttyACM0");
+        SerialPort serialPort =(SerialPort) portId.open("Demo application", 9600);
+        String serialMessage = "y";
+        OutputStream outstream = serialPort.getOutputStream();
+        InputStream inputStream = serialPort.getInputStream();
+        Thread.sleep(5000);
+        outstream.write("seryep".getBytes());
+        Thread.sleep(3000);
+        outstream.write("r".getBytes());
+        //System.out.print(inputStream.read());
 
-            while (1==1){
-                String data = serialPort.readString();
-                //И снова отправляем запрос
-                //serialPort.writeString("Get data");
-                System.out.println(data);
-
-            }
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+        //outstream.write(serialMessage.getBytes());
+        serialPort.close();
     }
+
 }
