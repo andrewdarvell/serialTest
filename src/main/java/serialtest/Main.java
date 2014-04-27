@@ -6,10 +6,7 @@ import gnu.io.NoSuchPortException;
 import gnu.io.PortInUseException;
 import gnu.io.SerialPort;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
+import java.io.*;
 
 
 public class Main {
@@ -26,13 +23,33 @@ public class Main {
         OutputStream outstream = serialPort.getOutputStream();
         InputStream inputStream = serialPort.getInputStream();
         Thread.sleep(5000);
-        outstream.write("seryep".getBytes());
-        Thread.sleep(3000);
-        outstream.write("r".getBytes());
-        //System.out.print(inputStream.read());
 
-        //outstream.write(serialMessage.getBytes());
+        outstream.write("s100200p".getBytes());
+        Thread.sleep(3000);
+        //outstream.write("r".getBytes());
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String cons = "";
+        while (!cons.equals("exit")){
+            cons = bufferedReader.readLine();
+            String comm = cons.substring(0,1);
+            String par = cons.substring(1,4);
+            switch (comm){
+                case "f":outstream.write(("s"+"mvf"+par+"p").getBytes());
+                    break;
+                case "b":outstream.write(("s"+"mvb"+par+"p").getBytes());
+                    break;
+                case "l":outstream.write(("s"+"mvl"+par+"p").getBytes());
+                    break;
+                case "r":outstream.write(("s"+"mvr"+par+"p").getBytes());
+                    break;
+                case "s":outstream.write(("s"+"mvo"+"100"+"p").getBytes());
+                    break;
+            }
+        }
+
+
         serialPort.close();
     }
+
 
 }
