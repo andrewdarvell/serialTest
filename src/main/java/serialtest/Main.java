@@ -31,18 +31,20 @@ public class Main {
         String cons = "";
         while (!cons.equals("exit")){
             cons = bufferedReader.readLine();
-            String comm = cons.substring(0,1);
-            String par = cons.substring(1,4);
-            switch (comm){
-                case "f":outstream.write(("s"+"mvf"+par+"p").getBytes());
+            //String comm = cons.substring(0,1);
+            //String par = cons.substring(1,4);
+            switch (cons){
+                case "w":outstream.write(("s"+"mvf240p").getBytes());
                     break;
-                case "b":outstream.write(("s"+"mvb"+par+"p").getBytes());
+                case "s":outstream.write(("s"+"mvb240p").getBytes());
                     break;
-                case "l":outstream.write(("s"+"mvl"+par+"p").getBytes());
+                case "a":outstream.write(("s"+"mvl240p").getBytes());
                     break;
-                case "r":outstream.write(("s"+"mvr"+par+"p").getBytes());
+                case "d":outstream.write(("s"+"mvr240p").getBytes());
                     break;
-                case "s":outstream.write(("s"+"mvo"+"100"+"p").getBytes());
+                case "e":outstream.write(("smvo100p").getBytes());
+                    break;
+                default:outstream.write(("smvo100p").getBytes());
                     break;
             }
         }
